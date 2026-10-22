@@ -3,7 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vanta Scripts</title>
+<title>Vanta Scripts · Automatisation Python à Kinshasa</title>
+<meta name="description" content="Scripts Python prêts à l'emploi ou sur mesure pour automatiser le tri, le renommage et le traitement de vos fichiers. Compatible Termux, Linux et Windows. Kinshasa, RDC.">
+<meta name="theme-color" content="#0F1723">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Vanta">
+<meta property="og:title" content="Vanta Scripts · Automatisez vos tâches répétitives">
+<meta property="og:description" content="Scripts Python prêts à l'emploi ou sur mesure : tri de fichiers, assistant vocal, automatisations. Devis et délai sous 24h.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F1723'/%3E%3Cpath d='M32 14 52 50H12z' fill='%237EA2FF'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: en-tête sobre, hero en deux colonnes (texte + terminal qui montre le vrai résultat du script), catalogue en grille, étapes, contact. */
@@ -144,7 +152,15 @@ h2 { font-size: clamp(26px, 4.5vw, 38px); font-weight: 700; letter-spacing: -0.0
 .steps h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
 .steps p { color: var(--muted); font-size: 15.5px; }
 
+/* À propos */
+.about { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; max-width: 70ch; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 22px; }
+.about h2 { margin-bottom: 12px; }
+.about p { color: var(--muted); }
+.about p + p { margin-top: 10px; }
+
 /* Contact */
+.btn-wa { margin-top: 24px; }
 .contact { display: grid; grid-template-columns: 1fr; gap: 32px; }
 @media (min-width: 880px) { .contact { grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; } }
 .contact p.note { color: var(--muted); margin-top: 16px; max-width: 46ch; }
@@ -155,6 +171,13 @@ h2 { font-size: clamp(26px, 4.5vw, 38px); font-weight: 700; letter-spacing: -0.0
 .row .v { font-family: var(--font-body); font-size: 15px; flex: 1; min-width: 0; overflow-wrap: anywhere; user-select: all; }
 .copy { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1.5px solid transparent; background: var(--chip); color: var(--fg); font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer; }
 .copy:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 559px) {
+  .row { flex-direction: column; align-items: stretch; gap: 8px; }
+  .row .k { width: auto; font-size: 13px; }
+  .row .v { flex: none; font-size: 16px; }
+  .copy { width: 100%; justify-content: center; }
+  .btn-wa { width: 100%; }
+}
 
 footer { padding-block: 32px 40px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
 </style>
@@ -248,18 +271,25 @@ footer { padding-block: 32px 40px; border-top: 1px solid var(--line); font-size:
       </ol>
     </section>
 
+    <section id="a-propos">
+      <div class="about">
+        <div class="avatar" aria-hidden="true">M</div>
+        <div>
+          <h2>À propos de moi</h2>
+          <p>Je m’appelle Mervedi Mavinga, étudiant en électricité industrielle à Kinshasa et passionné par l’informatique, la programmation et les nouvelles technologies.</p>
+          <p>Je développe mes propres outils et scripts en Python, que je conçois, teste et améliore principalement sur Android avec Termux, ainsi que sur ordinateur. Je m’intéresse particulièrement à l’automatisation, au développement d’applications et à la cybersécurité éthique.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="contact">
         <div>
           <h2>Discutons de votre projet</h2>
           <p class="note">Décrivez l'automatisation dont vous avez besoin. Une réponse avec devis et délai vous sera envoyée sous 24h.</p>
+          <a class="btn btn-main btn-wa" href="https://wa.me/243839892837?text=Bonjour%2C%20je%20souhaite%20automatiser%20la%20t%C3%A2che%20suivante%20%3A%20" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
         </div>
         <div class="rows">
-          <div class="row">
-            <span class="k">WhatsApp</span>
-            <span class="v">+243 839 892 837</span>
-            <button class="copy" type="button" data-copy="+243 839 892 837">📋 Copier</button>
-          </div>
           <div class="row">
             <span class="k">E-mail</span>
             <span class="v">mervedimavingabureau@gmail.com</span>
