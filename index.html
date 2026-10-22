@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vanta Scripts</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: en-tête sobre, hero en deux colonnes (texte + terminal qui montre le vrai résultat du script), catalogue en grille, étapes, contact. */
 :root {
@@ -16,14 +16,15 @@
   --accent: #1D4ED8;
   --accent-fg: #FFFFFF;
   --accent-soft: #E3EBFD;
+  --chip: #E8ECF2;
   --term-bg: #0F1723;
   --term-fg: #DCE4F0;
   --term-dim: #7C8CA3;
   --term-ok: #3DDC97;
   --term-warn: #F2B705;
-  --font-display: 'Familjen Grotesk', 'Arial Narrow', Arial, sans-serif;
-  --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -35,6 +36,7 @@
     --accent: #7EA2FF;
     --accent-fg: #0B111B;
     --accent-soft: #17233B;
+    --chip: #1B2536;
     --term-bg: #070B12;
     --term-fg: #DCE4F0;
     --term-dim: #7C8CA3;
@@ -52,6 +54,7 @@
   --accent: #7EA2FF;
   --accent-fg: #0B111B;
   --accent-soft: #17233B;
+  --chip: #1B2536;
   --term-bg: #070B12;
   --term-fg: #DCE4F0;
   --term-dim: #7C8CA3;
@@ -79,8 +82,8 @@ p { margin: 0; }
 
 /* Header */
 .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 20px; }
-.brand { font-family: var(--font-mono); font-weight: 500; font-size: 17px; color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-.brand b { color: var(--accent); font-weight: 500; }
+.brand { font-family: var(--font-body); font-weight: 700; font-size: 18px; color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.brand b { color: var(--accent); font-weight: 700; }
 .nav { display: flex; gap: 20px; font-size: 15px; }
 .nav a { color: var(--muted); text-decoration: none; }
 .nav a:hover { color: var(--fg); }
@@ -88,10 +91,10 @@ p { margin: 0; }
 /* Hero */
 .hero { display: grid; grid-template-columns: 1fr; gap: 40px; padding-block: 48px 64px; align-items: center; }
 @media (min-width: 880px) { .hero { grid-template-columns: 1fr 1.05fr; gap: 56px; padding-block: 72px 88px; } }
-.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-h1 { font-size: clamp(38px, 7vw, 64px); font-weight: 700; letter-spacing: -0.02em; }
+.eyebrow { font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+h1 { font-size: clamp(34px, 6vw, 56px); font-weight: 700; letter-spacing: -0.025em; }
 h1 em { font-style: normal; color: var(--accent); }
-.lead { margin-top: 24px; font-size: 18px; color: var(--muted); max-width: 46ch; }
+.lead { margin-top: 24px; font-size: 18px; color: var(--muted); max-width: 50ch; }
 .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 8px; font-family: var(--font-body); font-size: 16px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--accent); cursor: pointer; }
 .btn-main { background: var(--accent); color: var(--accent-fg); }
@@ -99,7 +102,7 @@ h1 em { font-style: normal; color: var(--accent); }
 .btn-ghost { background: transparent; color: var(--accent); }
 .btn-ghost:hover { background: var(--accent-soft); }
 
-/* Terminal */
+/* Terminal (seul endroit en monospace) */
 .term { background: var(--term-bg); color: var(--term-fg); border-radius: 12px; border: 1px solid var(--line); overflow: hidden; min-width: 0; }
 .term-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid #1E2A3C; font-family: var(--font-mono); font-size: 12.5px; color: var(--term-dim); }
 .term-bar i { width: 10px; height: 10px; border-radius: 50%; background: #2B3A52; display: inline-block; }
@@ -117,28 +120,28 @@ h1 em { font-style: normal; color: var(--accent); }
 /* Sections */
 section { padding-block: 56px; border-top: 1px solid var(--line); }
 .sec-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; max-width: 60ch; }
-h2 { font-size: clamp(28px, 4.5vw, 40px); font-weight: 700; letter-spacing: -0.015em; }
+h2 { font-size: clamp(26px, 4.5vw, 38px); font-weight: 700; letter-spacing: -0.02em; }
 .sec-head p { color: var(--muted); }
 
 /* Catalogue */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.pill { align-self: flex-start; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
-.pill.on { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 500; }
-.card h3 { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; }
+.pill { align-self: flex-start; font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.pill.on { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 600; }
+.card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.015em; }
 .card p { color: var(--muted); font-size: 15.5px; }
-.meta { margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--line); font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+.meta { margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--line); font-family: var(--font-body); font-size: 13px; color: var(--muted); }
 .card .link { font-size: 15px; font-weight: 600; }
 .price { margin-top: auto; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; color: var(--fg); }
-.price strong { font-family: var(--font-display); font-size: 30px; font-weight: 700; letter-spacing: -0.01em; }
-.price span { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+.price strong { font-family: var(--font-display); font-size: 32px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); }
+.price span { font-family: var(--font-body); font-size: 13px; color: var(--muted); }
 .price + .meta { margin-top: 0; }
 
 /* Étapes */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; counter-reset: step; }
 .steps li { counter-increment: step; display: flex; flex-direction: column; gap: 8px; min-width: 0; padding-top: 16px; border-top: 2px solid var(--fg); }
-.steps li::before { content: "Étape " counter(step); font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.steps h3 { font-size: 22px; font-weight: 600; }
+.steps li::before { content: "Étape " counter(step); font-family: var(--font-body); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.steps h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
 .steps p { color: var(--muted); font-size: 15.5px; }
 
 /* Contact */
@@ -148,12 +151,12 @@ h2 { font-size: clamp(28px, 4.5vw, 40px); font-weight: 700; letter-spacing: -0.0
 .rows { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; min-width: 0; }
 .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; flex-wrap: wrap; }
 .row + .row { border-top: 1px solid var(--line); }
-.row .k { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); width: 90px; flex: none; }
-.row .v { font-family: var(--font-mono); font-size: 15px; flex: 1; min-width: 0; overflow-wrap: anywhere; user-select: all; }
-.copy { min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1.5px solid var(--line); background: transparent; color: var(--fg); font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer; }
+.row .k { font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--muted); width: 90px; flex: none; }
+.row .v { font-family: var(--font-body); font-size: 15px; flex: 1; min-width: 0; overflow-wrap: anywhere; user-select: all; }
+.copy { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1.5px solid transparent; background: var(--chip); color: var(--fg); font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer; }
 .copy:hover { border-color: var(--accent); color: var(--accent); }
 
-footer { padding-block: 32px 40px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+footer { padding-block: 32px 40px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -162,7 +165,7 @@ footer { padding-block: 32px 40px; border-top: 1px solid var(--line); display: f
     <a class="brand" href="#"><b>▲</b> Vanta</a>
     <nav class="nav" aria-label="Navigation">
       <a href="#catalogue">Scripts</a>
-      <a href="#methode">Méthode</a>
+      <a href="#fonctionnement">Fonctionnement</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -171,10 +174,10 @@ footer { padding-block: 32px 40px; border-top: 1px solid var(--line); display: f
     <div class="hero">
       <div>
         <p class="eyebrow">Scripts d'automatisation · Kinshasa</p>
-        <h1>Tes tâches répétitives, réglées en <em>une commande</em>.</h1>
-        <p class="lead">Je code des scripts Python qui trient, renomment et traitent tes fichiers à ta place. Tu les lances depuis ton téléphone ou ton ordinateur, avec un mode d'emploi clair.</p>
+        <h1>Automatisez vos tâches répétitives en <em>une seule commande</em>.</h1>
+        <p class="lead">Développement de scripts Python sur mesure pour trier, renommer et traiter vos fichiers automatiquement. Exécutez vos outils depuis un smartphone (Termux) ou un ordinateur via une interface en ligne de commande simplifiée.</p>
         <div class="cta">
-          <a class="btn btn-main" href="#catalogue">Voir les scripts</a>
+          <a class="btn btn-main" href="#catalogue">Découvrir les scripts</a>
           <a class="btn btn-ghost" href="#contact">Demander un script</a>
         </div>
       </div>
@@ -196,51 +199,51 @@ footer { padding-block: 32px 40px; border-top: 1px solid var(--line); display: f
 
     <section id="catalogue">
       <div class="sec-head">
-        <h2>Les scripts</h2>
-        <p>Chaque script est livré avec son code et un mode d'emploi. Il fonctionne sous Termux, Linux et Windows avec Python 3.</p>
+        <h2>Nos Scripts Prêts à l'Emploi</h2>
+        <p>Chaque outil est livré avec son code source complet et une documentation d'installation. Compatibilité native : Termux, Linux, Windows (Python 3.x).</p>
       </div>
       <div class="grid">
         <article class="card">
           <span class="pill on">Disponible</span>
           <h3>Trieur de fichiers</h3>
-          <p>Range un dossier en désordre en sept catégories : images, documents, vidéos, audio, archives, code et exécutables. Les doublons sont renommés, rien n'est écrasé.</p>
+          <p>Organisez instantanément vos répertoires complexes selon 7 catégories prédéfinies (Images, Documents, Vidéos, Audio, Archives, Code, Exécutables). Gestion intelligente des doublons par renommage automatique afin d'éviter toute perte de données.</p>
           <a class="link" href="https://github.com/mervedimavinga20-art/lab-vanta" target="_blank" rel="noopener">Voir le code sur GitHub</a>
           <p class="price"><strong>3 $</strong><span>paiement unique</span></p>
-          <p class="meta">Python 3 · aucune dépendance · option -p pour choisir le dossier</p>
+          <p class="meta">Zéro dépendance externe | Option -p pour cibler un répertoire personnalisé.</p>
         </article>
         <article class="card">
           <span class="pill">En développement</span>
           <h3>Assistant vocal Jarvis</h3>
-          <p>Un assistant qui t'écoute et te répond à voix haute en français. Pensé pour tourner directement sur ton téléphone avec Termux.</p>
+          <p>Assistant virtuel avec reconnaissance et synthèse vocale 100% en français. Optimisé pour une exécution locale sur smartphone via l'environnement Termux.</p>
           <p class="price"><strong>Bientôt</strong><span>prix annoncé à la sortie</span></p>
           <p class="meta">Python · Termux · voix en français</p>
         </article>
         <article class="card">
           <span class="pill">Sur devis</span>
           <h3>Script sur mesure</h3>
-          <p>Une tâche que tu refais à la main chaque jour ? Décris-la, je te livre un script prêt à lancer, avec un mode d'emploi.</p>
+          <p>Une routine chronophage ou répétitive ? Décrivez votre besoin et obtenez un script clé en main accompagné de sa documentation technique.</p>
           <p class="price"><strong>Dès 10 $</strong><span>selon la tâche</span></p>
           <p class="meta">Prix et délai donnés avant de commencer</p>
         </article>
       </div>
     </section>
 
-    <section id="methode">
+    <section id="fonctionnement">
       <div class="sec-head">
-        <h2>Comment ça se passe</h2>
+        <h2>Déroulement du projet</h2>
       </div>
       <ol class="steps">
         <li>
-          <h3>Tu décris la tâche</h3>
-          <p>Par message, dis-moi ce que tu fais à la main et combien de fois par semaine.</p>
+          <h3>Expression du besoin</h3>
+          <p>Soumettez la description de votre tâche manuelle et estimez sa fréquence hebdomadaire.</p>
         </li>
         <li>
-          <h3>Je te donne un prix</h3>
-          <p>Tu reçois le prix et le délai avant que je commence. Tu paies par mobile money.</p>
+          <h3>Cotation &amp; facturation</h3>
+          <p>Recevez une estimation tarifaire et un délai d'exécution clairs. Règlement sécurisé via Mobile Money avant le lancement du développement.</p>
         </li>
         <li>
-          <h3>Tu reçois le script</h3>
-          <p>Le fichier arrive avec un mode d'emploi. Si quelque chose bloque, je corrige.</p>
+          <h3>Livraison &amp; recette</h3>
+          <p>Récupérez votre script et sa documentation. Support technique inclus pour corriger d'éventuels bugs à la livraison.</p>
         </li>
       </ol>
     </section>
@@ -248,19 +251,19 @@ footer { padding-block: 32px 40px; border-top: 1px solid var(--line); display: f
     <section id="contact">
       <div class="contact">
         <div>
-          <h2>Demander un script</h2>
-          <p class="note">Écris-moi ce que tu veux automatiser. Je réponds avec un prix et un délai.</p>
+          <h2>Discutons de votre projet</h2>
+          <p class="note">Décrivez l'automatisation dont vous avez besoin. Une réponse avec devis et délai vous sera envoyée sous 24h.</p>
         </div>
         <div class="rows">
           <div class="row">
             <span class="k">WhatsApp</span>
-            <span class="v">+243 XXX XXX XXX</span>
-            <button class="copy" type="button" data-copy="+243 XXX XXX XXX">Copier</button>
+            <span class="v">+243 839 892 837</span>
+            <button class="copy" type="button" data-copy="+243 839 892 837">📋 Copier</button>
           </div>
           <div class="row">
             <span class="k">E-mail</span>
-            <span class="v">ton-adresse@exemple.com</span>
-            <button class="copy" type="button" data-copy="ton-adresse@exemple.com">Copier</button>
+            <span class="v">mervedimavingabureau@gmail.com</span>
+            <button class="copy" type="button" data-copy="mervedimavingabureau@gmail.com">📋 Copier</button>
           </div>
           <div class="row">
             <span class="k">GitHub</span>
@@ -272,8 +275,7 @@ footer { padding-block: 32px 40px; border-top: 1px solid var(--line); display: f
   </main>
 
   <footer>
-    <span>© 2026 Vanta · Kinshasa, RDC</span>
-    <span>Scripts Python d'automatisation</span>
+    <span>© 2026 Vanta. Tous droits réservés. Conçu à Kinshasa, RDC.</span>
   </footer>
 </div>
 
@@ -281,9 +283,10 @@ footer { padding-block: 32px 40px; border-top: 1px solid var(--line); display: f
 document.querySelectorAll('.copy').forEach(function (btn) {
   btn.addEventListener('click', function () {
     var text = btn.getAttribute('data-copy');
+    var reset = function () { btn.textContent = '📋 Copier'; };
     var done = function () {
-      btn.textContent = 'Copié';
-      setTimeout(function () { btn.textContent = 'Copier'; }, 1600);
+      btn.textContent = '✓ Copié';
+      setTimeout(reset, 1600);
     };
     var fallback = function () {
       var v = btn.parentElement.querySelector('.v');
@@ -293,7 +296,7 @@ document.querySelectorAll('.copy').forEach(function (btn) {
       s.removeAllRanges();
       s.addRange(r);
       btn.textContent = 'Sélectionné';
-      setTimeout(function () { btn.textContent = 'Copier'; }, 1600);
+      setTimeout(reset, 1600);
     };
     try {
       navigator.clipboard.writeText(text).then(done, fallback);
